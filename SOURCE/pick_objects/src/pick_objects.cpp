@@ -47,14 +47,16 @@ int main(int argc, char** argv){
     // Wait an infinite time for the results
     ac.waitForResult();
 
-      // Check if the robot reached its goal
+    // Check if the robot reached its goal
     if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     {
-      ROS_INFO("Robot dropped the virtual object");
+      ROS_INFO("The robot reached the goal");
+      // wait 5 seconds
+      sleep(5);
     }
     else
     {
-      ROS_INFO("The robot failed to reach drop off zone");
+      ROS_INFO("The robot failed to reach goal");
       return 1;
     }
   }
