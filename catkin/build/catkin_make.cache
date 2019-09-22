@@ -1,0 +1,2 @@
+turtlebot_gazebo:turtlebot_rviz_launchers:turtlebot_teleop
+-DCATKIN_DEVEL_PREFIX=/home/workspace/RND_05_project/catkin/devel -DCMAKE_INSTALL_PREFIX=/home/workspace/RND_05_project/catkin/install -G Unix Makefiles
