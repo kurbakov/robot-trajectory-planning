@@ -35,8 +35,8 @@ int main(int argc, char** argv){
 
   // create vector of goals
   std::vector<move_base_msgs::MoveBaseGoal> goals;
-  goals.push_back(createGoal(1.0,1.0,1.0));
-  //goals.push_back(createGoal(1.0,1.0,1.0));
+  goals.push_back(createGoal(-7.5,-7.0,1.0));
+  goals.push_back(createGoal(7.5,-7.0,1.0));
 
   // reach all goals
   for(int i=0; i<goals.size(); ++i){
@@ -61,8 +61,5 @@ int main(int argc, char** argv){
     }
   }
   
-  // never leave the main
-  while(true){}
-
   return 0;
 }
