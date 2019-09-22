@@ -1,0 +1,1 @@
+../SOURCE/scripts/test_navigation.sh
