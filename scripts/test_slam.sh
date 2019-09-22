@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## run turtlebot launch file
-xterm -e "roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$(pwd)/../map/jin.world" &
+xterm -e "roslaunch turtlebot_gazebo turtlebot_world.launch world_file:=$(pwd)/../map/MyWorld.world" &
 sleep 5
 
 ## run slam_gmapping
