@@ -119,6 +119,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/workspace/RND_05_project/catkin/build/gtest/cmake_install.cmake")
   include("/home/workspace/RND_05_project/catkin/build/turtlebot_gazebo/cmake_install.cmake")
   include("/home/workspace/RND_05_project/catkin/build/turtlebot_rviz_launchers/cmake_install.cmake")
+  include("/home/workspace/RND_05_project/catkin/build/pick_objects/cmake_install.cmake")
   include("/home/workspace/RND_05_project/catkin/build/turtlebot_teleop/cmake_install.cmake")
 
 endif()

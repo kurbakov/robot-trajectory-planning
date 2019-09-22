@@ -1,0 +1,8 @@
+prefix=/home/workspace/RND_05_project/catkin/install
+
+Name: pick_objects
+Description: Description of pick_objects
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/workspace/RND_05_project/catkin/install/lib 
+Requires: 

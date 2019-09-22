@@ -1,0 +1,1 @@
+../SOURCE/scripts/pick_objects.sh

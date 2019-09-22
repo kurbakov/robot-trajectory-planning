@@ -6,7 +6,7 @@
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 
-move_base_msgs::MoveBaseGoal vreateGoal(double pos_x, double pos_y, double orientation_w){
+move_base_msgs::MoveBaseGoal createGoal(double pos_x, double pos_y, double orientation_w){
   move_base_msgs::MoveBaseGoal goal;
 
   // set up the frame parameters
@@ -35,14 +35,14 @@ int main(int argc, char** argv){
 
   // create vector of goals
   std::vector<move_base_msgs::MoveBaseGoal> goals;
-  goals.push_nack(createGoal(5.0,5.0,1.0));
-  goals.push_nack(createGoal(1.0,-3.0,1.0));
+  goals.push_back(createGoal(1.0,1.0,1.0));
+  //goals.push_back(createGoal(1.0,1.0,1.0));
 
   // reach all goals
-  for(const auto& goal : goals){
+  for(int i=0; i<goals.size(); ++i){
     // Send the goal position and orientation for the robot to reach
     ROS_INFO("Sending goal");
-    ac.sendGoal(goal);
+    ac.sendGoal(goals[i]);
 
     // Wait an infinite time for the results
     ac.waitForResult();

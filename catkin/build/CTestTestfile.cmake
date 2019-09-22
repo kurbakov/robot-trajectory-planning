@@ -7,4 +7,5 @@
 subdirs(gtest)
 subdirs(turtlebot_gazebo)
 subdirs(turtlebot_rviz_launchers)
+subdirs(pick_objects)
 subdirs(turtlebot_teleop)
