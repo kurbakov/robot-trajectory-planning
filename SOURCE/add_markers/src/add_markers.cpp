@@ -12,22 +12,8 @@ geometry_msgs::Pose2D current_pose;
 
 void odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
 {
-  // initial set for robot rotation (90 deg)
-  current_pose.x = msg->pose.pose.position.y;
-  current_pose.y = msg->pose.pose.position.x*(-1);
-
-  tf::Quaternion q(
-    msg->pose.pose.orientation.x,
-    msg->pose.pose.orientation.y,
-    msg->pose.pose.orientation.z,
-    msg->pose.pose.orientation.w
-  );
-
-  tf::Matrix3x3 m(q);
-  double roll, pitch, yaw;
-  m.getRPY(roll,pitch,yaw);
-  
-  current_pose.theta=yaw;
+  current_pose.x = msg->pose.pose.position.x;
+  current_pose.y = msg->pose.pose.position.y;
 }
 
 void initiateMarker(visualization_msgs::Marker& marker){
@@ -57,8 +43,10 @@ void initiateMarker(visualization_msgs::Marker& marker){
   marker.lifetime = ros::Duration();
 }
 
-double computeDistance(double x1, double y1, doublex2, double y2){
-  return std::sqrt(std::pow(x1-x2, 2)+std::pow(y1-y2, 2));
+#include <iostream>
+
+double computeDistance(double x1, double y1, double x2, double y2){
+  return std::sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2));
 }
 
 int main( int argc, char** argv )
@@ -72,7 +60,7 @@ int main( int argc, char** argv )
   // add odometry subscriber
   ros::Subscriber odom_sub = n.subscribe("/odom", 1, odomCallback);
   
-  std::queue<std::vector<double>> goals;
+  std::queue<std::vector<double> > goals;
   goals.push({-7.5,-7.0,1.0});
   goals.push({7.5,-7.0,1.0});
   
@@ -102,8 +90,9 @@ int main( int argc, char** argv )
     const double dist = computeDistance(goals.front()[0],goals.front()[1],current_pose.x, current_pose.y);
     
     if(pickup){
+      ROS_INFO_ONCE("Driving to the first goal");
       marker_pub.publish(marker);
-      if(dist < 0.5){
+      if(dist < 1){
         ROS_INFO_ONCE("Hide the marker");
         marker.action = visualization_msgs::Marker::DELETE;
         marker_pub.publish(marker);
@@ -113,7 +102,8 @@ int main( int argc, char** argv )
       }
     }
     else{
-      if(dist < 0.5){
+      ROS_INFO_ONCE("Driving to the drop off zone");
+      if(dist < 1){
         ROS_INFO_ONCE("Publish the marker at the drop off zone");
         marker.action = visualization_msgs::Marker::ADD;
         marker.pose.position.x = goals.front()[0];

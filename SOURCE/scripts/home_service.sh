@@ -12,10 +12,10 @@ sleep 2
 xterm -e "roslaunch add_markers add_markers.launch" &
 sleep 2
 
-## pick up virtual objects
-xterm -e "rosrun pick_objects pick_objects_node"
-sleep 2
-
 ## run markers
 xterm -e "rosrun add_markers add_markers_node" &
+sleep 2
+
+## pick up virtual objects
+xterm -e "rosrun pick_objects pick_objects_node"
 sleep 2
