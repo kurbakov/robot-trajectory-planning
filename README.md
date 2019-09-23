@@ -21,7 +21,7 @@ sudo apt install ros-kinetic-map-server
 cd ~
 git clone https://github.com/kurbakov/RND_05_project
 cd RND_05_project/catkin
-catkin_make && source_devel.setup.bash
+catkin_make && source_devel/setup.bash
 ./home_service.sh
 ```
 * Important: in catkin worlspace I keep only symbolic links to packages.
